@@ -1,0 +1,22 @@
+.input {
+  display: flex;
+  width: -webkit-fill-available;
+  flex-direction: column;
+  flex-shrink: 0;
+  &_block {
+    display: flex;
+    background-color: #40444b;
+    padding: 10px;
+  }
+  &_text {
+    width: 97%;
+    color: white;
+    background-color: #40444b;
+    outline: none;
+    border: none;
+  }
+  &_emoji {
+    padding: 0 10px;
+    cursor: pointer;
+  }
+}
