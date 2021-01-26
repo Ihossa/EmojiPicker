@@ -1,31 +1,56 @@
 import React from "react";
+import './ToolType.scss'
 import { useState, useEffect } from 'react';
 
 
-function ToolType() {
+function ToolType({setValueInput}) {
     const emojies = require('emojis-list')
     const emojiesText = require('emojis-keywords');
-    const [emoji, emojiArr] = useState([]);
+    const [emojiArr, setEmoji] = useState([]);
+    const [emojiHover, setEmojiHover] = useState("");
 
-      useEffect(() => {
-        for(let i = 1749; i < 1800; i++){
-            let emojiObj = {
-                emojies: emojies[i],
-                emojiesText: emojiesText[i]
-            }
-            emojiArr(emoji.push(emojiObj))
-            console.log(emoji)
-            // emojiArr(emoji.push(emojiObj))
-        }
-      });
-    
+    useEffect(() => {
+      let arrEmoji = [];
+      for(let i = 1749; i < 1800; i++){
+        let emojiObj = {
+          id: i,
+          emojies: emojies[i],
+          emojiesText: emojiesText[i]
+        };
+        arrEmoji.push(emojiObj)
+      };
+      setEmoji(arrEmoji)
+      console.log(emojiArr)
+    },[]);
+
+    function onMouseEnterHandler(el) {
+      setEmojiHover(el.target.id)
+    };
+    function onMouseLeaveHandler() {
+      setEmojiHover("")
+    };
+
   return (
-    <div className = "tool-bar">
-        <h1 className = "tool-bar_header">Smileys & People</h1>
-        <div className = "tool-bar_emoji">
-
-        </div>
-        <input type = "text" />
+    <div className = "wrap">
+      <div className = "tool-bar">
+          <h1 className = "tool-bar_header">Smileys & People</h1>
+          <div className = "tool-bar_emoji">
+            {emojiArr.map((emoji, index) => {
+              return ( <div 
+                key = {index}
+                id = {emoji.id}
+                className = "tool-bar_emoji_smile"
+                onMouseEnter = {onMouseEnterHandler}
+                onMouseLeave = {onMouseLeaveHandler}
+                onClick = {() => setValueInput(emojies[emojiHover])}
+                >
+                  {emoji.emojies}
+                </div>
+                )
+            })}
+          </div>
+          <input className = "tool-bar_input" value = {emojiHover !== "" ? `${emojies[emojiHover]} ${emojiesText[emojiHover]}` : ""} readOnly />
+      </div>
     </div>
   );
 }

@@ -1,10 +1,11 @@
 .input {
   display: flex;
-  width: -webkit-fill-available;
   flex-direction: column;
   flex-shrink: 0;
   &_block {
     display: flex;
+    border-radius: 5px;
+    margin: 5px;
     background-color: #40444b;
     padding: 10px;
   }
@@ -12,6 +13,11 @@
     width: 97%;
     color: white;
     background-color: #40444b;
+    font-family: Helvetica Neue;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
     outline: none;
     border: none;
   }
